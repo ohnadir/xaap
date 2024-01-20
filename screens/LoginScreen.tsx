@@ -1,7 +1,6 @@
-import { Button, KeyboardAvoidingView, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native';
+import { KeyboardAvoidingView, Pressable, SafeAreaView, Text, View} from 'react-native';
 import React from 'react';
 import Logo from '../components/Logo';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomInput from '../src/CommonComponents/CustomInput';
 
 const LoginScreen = () => {
@@ -28,10 +27,10 @@ const LoginScreen = () => {
 
         <View style={{marginTop: 20}}>
           <View>
-            <CustomInput placeholder='Enter Your Password' icon={require('../src/assets/email.png')} />
+            <CustomInput name='email' placeholder='Enter Your Email' icon={require('../src/assets/email.png')} />
           </View>
           <View style={{marginTop: 20}}>
-            <CustomInput placeholder='Enter Your Password' icon={require('../src/assets/padlock.png')} type={true} />
+            <CustomInput name='password' placeholder='Enter Your Password' icon={require('../src/assets/padlock.png')} type={true} />
           </View>
         </View>
 

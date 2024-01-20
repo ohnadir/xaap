@@ -1,12 +1,14 @@
 import { View, Text, Image, TextInput } from 'react-native'
 import React from 'react'
 interface CustomInputProps{
+    name: string,
     placeholder: string,
     icon: any,
     onchange?: ()=> void,
     type?: boolean,
 }
 const CustomInput: React.FC<CustomInputProps> = ({
+    name,
     placeholder,
     icon,
     onchange,
@@ -24,7 +26,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         }}
     >
         <Image
-            style={{width: 18, height: 18}}
+            style={{width: 18, height: 18,}}
             source={icon}
         />
         <TextInput
@@ -36,6 +38,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
             secureTextEntry={type ? true : false}
             placeholder={placeholder}  
             placeholderTextColor="#8899a6"
+            name={name}
         />
     </View>
   )
