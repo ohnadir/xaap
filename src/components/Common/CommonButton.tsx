@@ -3,31 +3,32 @@ import React from 'react';
 
 interface CommonButtonProps{
     label:string,
-    color: string,
+    color?: string,
+    outline?:boolean
 }
 
 const CommonButton: React.FC<CommonButtonProps> = ({
     label,
-    color
+    color,
+    outline
 }) => {
   return (
     <Pressable
           style={{
-            width: 200,
+            width: outline ? "100%" : 200,
             backgroundColor: "#FEBE10",
             borderRadius: 4,
             marginLeft: "auto",
             marginRight: "auto",
             padding: 5,
-            marginTop: 50,
           }}
         >
           <Text
             style={{
               textAlign: "center",
-              color: "white",
-              fontSize: 15,
-              fontWeight: "bold",
+              fontSize: 14,
+              fontWeight: "400",
+              color: "black"
             }}
           >
             {label}

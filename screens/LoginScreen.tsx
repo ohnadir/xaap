@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, Pressable, SafeAreaView, Text, View} from 'react-native';
 import React from 'react';
 import Logo from '../components/Logo';
-import CustomInput from '../src/CommonComponents/CustomInput';
+import CustomInput from '../src/components/Common/CustomInput';
 
 const LoginScreen = () => {
   return (

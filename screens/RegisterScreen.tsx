@@ -1,8 +1,8 @@
 import { KeyboardAvoidingView, Pressable, SafeAreaView, Text, View} from 'react-native';
 import React from 'react';
 import Logo from '../components/Logo';
-import CustomInput from '../src/CommonComponents/CustomInput';
-import CommonButton from '../src/CommonComponents/CommonButton';
+import CustomInput from '../src/components/Common/CustomInput';
+import CommonButton from '../src/components/Common/CommonButton';
 
 const RegisterScreen = () => {
   return (
