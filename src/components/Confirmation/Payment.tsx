@@ -7,7 +7,6 @@ interface PaymentProps{
     currentStep?: number;
     selectedOption?: string;
     setCurrentStep?: (step: number) => void;
-    option?: boolean;
     setSelectedOption?: (value: string) => void;
 }
 
