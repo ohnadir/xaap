@@ -3,7 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import CartScreen from '../screens/CartScreen'
+import CartScreen from '../screens/CartScreen';
+import ConfirmationScreen from '../screens/ConfirmationScreen';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -20,9 +21,14 @@ const StackNavigator = () => {
           component={RegisterScreen}
           options={{headerShown: false}}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Cart"
           component={CartScreen}
+          options={{headerShown: false}}
+        /> */}
+        <Stack.Screen
+          name="Confirm"
+          component={ConfirmationScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
