@@ -72,7 +72,7 @@ const ProductDetailsScreen = () => {
                 >
                     <Text>Buy Now</Text>
                 </Pressable>
-            {/* </View> */}
+            {/* </View> */} 
         </ScrollView>
     )
 }

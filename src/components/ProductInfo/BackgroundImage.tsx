@@ -23,7 +23,7 @@ const BackgroundImage: React.FC<BackgroundImageProps> = ({
     onAction,
     onShare
 }) => {
-    const [hasFavorited, setHasFavorited] = useState(false);
+    const [hasFavorited, setHasFavorited] = useState(true);
     console.log(hasFavorited)
     const { width } = Dimensions.get("window");
     const height = (width * 100) / 100;

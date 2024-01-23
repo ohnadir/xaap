@@ -19,15 +19,15 @@ const Information: React.FC<InformationProps> = ({
             </View>
             <Text style={{ height: 1, borderColor: "#D0D0D0", borderBottomWidth: 1 }} />
             <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
-                <Text>Color: </Text>
-                <Text style={{ fontSize: 15, fontWeight: "bold" }}>Black</Text>
+                <Text style={{color: "black"}}>Color: </Text>
+                <Text style={{ fontSize: 15, color: "black", fontWeight: "bold" }}>Black</Text>
             </View>
 
             <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
-                <Text>Size: </Text>
-                <Text style={{ fontSize: 15, fontWeight: "bold" }}>Normal</Text>
+                <Text style={{color: "black"}}>Size: </Text>
+                <Text style={{ fontSize: 15, color: "black", fontWeight: "bold" }}>Normal</Text>
             </View>
-            
+
             <Text style={{ height: 1, borderColor: "#D0D0D0", borderBottomWidth: 1 }} />
 
             <View style={{ padding: 10 }}>

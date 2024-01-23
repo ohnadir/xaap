@@ -6,12 +6,18 @@ import RegisterScreen from '../screens/RegisterScreen';
 import CartScreen from '../screens/CartScreen';
 import ConfirmationScreen from '../screens/ConfirmationScreen';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
         {/* <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -32,11 +38,11 @@ const StackNavigator = () => {
           component={ConfirmationScreen}
           options={{headerShown: false}}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Info"
           component={ProductDetailsScreen}
           options={{headerShown: false}}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
