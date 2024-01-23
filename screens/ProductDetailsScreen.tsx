@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     Text,
@@ -14,8 +14,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation, useRoute } from "@react-navigation/native";
 import BackgroundImage from '../src/components/ProductInfo/BackgroundImage';
+import Information from '../src/components/ProductInfo/Information';
 
 const ProductDetailsScreen = () => {
+    const [addedToCart, setAddItemToCart] = useState()
     const navigation = useNavigation();
     const route = useRoute();
     const product = {
@@ -27,11 +29,50 @@ const ProductDetailsScreen = () => {
     }
     return (
         <ScrollView
-            style={{ flex: 1, backgroundColor: "white" }} showsVerticalScrollIndicator={false}
+            style={{ flex: 1, backgroundColor: "white" }} 
         >
-            <View>
+            {/* <View> */}
                 <BackgroundImage images={product.image}/>
-            </View>
+                <Information title={product.name} price={product.price}/>
+                <Pressable
+                    // onPress={() => setAddItemToCart(route?.params?.item)}
+                    style={{
+                    backgroundColor: "#FFC72C",
+                    padding: 10,
+                    borderRadius: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginHorizontal: 10,
+                    marginVertical: 10,
+                    }}
+                >
+                    {
+                        addedToCart ? (
+                            <View>
+                                <Text>Added to Cart</Text>
+                            </View>
+                        ) 
+                        : 
+                        (
+                        <Text>Add to Cart</Text>
+                        )
+                    }
+                </Pressable>
+
+                <Pressable
+                    style={{
+                    backgroundColor: "#FFAC1C",
+                    padding: 10,
+                    borderRadius: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginHorizontal: 10,
+                    marginVertical: 10,
+                    }}
+                >
+                    <Text>Buy Now</Text>
+                </Pressable>
+            {/* </View> */}
         </ScrollView>
     )
 }
