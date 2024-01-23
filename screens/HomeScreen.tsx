@@ -1,12 +1,14 @@
-import { View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import React from 'react'
 import Category from '../src/components/Home/Category'
+import SearchBar from '../src/components/Home/SearchBar'
 
 const HomeScreen = () => {
     return (
-        <View style={{backgroundColor: "white"}}>
+        <ScrollView style={{backgroundColor: "white"}}>
+            <SearchBar/>
             <Category/>
-        </View>
+        </ScrollView>
     )
 }
 
