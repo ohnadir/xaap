@@ -1,4 +1,4 @@
-import { Image, Pressable, ScrollView, Text } from 'react-native'
+import { Image, Pressable, ScrollView, Text, View } from 'react-native'
 import React from 'react'
 import Categories from '../../category.json'
 const Category = () => {
@@ -32,6 +32,7 @@ const Category = () => {
                     </Pressable>
                 ))
             }
+            <View style={{height:1, borderBottomWidth: 1,  borderColor: "#d0d0d0"}}/>
           </ScrollView>
     )
 }
