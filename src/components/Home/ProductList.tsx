@@ -7,8 +7,7 @@ type RootStackParamList = {
         id: number;
         title: string;
         price: number;
-
-     };
+    }
   };
 
 interface ProductListProps {
@@ -39,29 +38,31 @@ const ProductList: React.FC<ProductListProps> = ({
     };
 
     return (
-        <Pressable key={id} onPress={handleNavigate}>
-            <Image
-                style={{ width: 150, height: 150, resizeMode: "contain" }}
-                source={{ uri: image }}
-            />
+        <View>
+            <Pressable key={id} onPress={handleNavigate}>
+                <Image
+                    style={{ width: 150, height: 150, resizeMode: "contain" }}
+                    source={{ uri: image }}
+                />
 
-            <Text numberOfLines={1} style={{ width: 150, marginTop: 10 }}>
-                {title}
-            </Text>
-
-            <View
-                style={{
-                    marginTop: 5,
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
-            >
-                <Text style={{ fontSize: 15, fontWeight: "bold" }}>₹{price}</Text>
-                <Text style={{ color: "#FFC72C", fontWeight: "bold" }}>
-                    {rating} ratings
+                <Text numberOfLines={1} style={{ width: 150, marginTop: 10 }}>
+                    {title}
                 </Text>
-            </View>
+
+                <View
+                    style={{
+                        marginTop: 5,
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Text style={{ fontSize: 15, fontWeight: "bold" }}>₹{price}</Text>
+                    <Text style={{ color: "#FFC72C", fontWeight: "bold" }}>
+                        {rating} ratings
+                    </Text>
+                </View>
+            </Pressable>
 
             <Pressable
                 style={{
@@ -82,7 +83,8 @@ const ProductList: React.FC<ProductListProps> = ({
                     <Text>Add to Cart</Text>
                 )}
             </Pressable>
-        </Pressable>
+        
+        </View>
     );
 };
 
