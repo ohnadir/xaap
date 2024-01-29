@@ -28,6 +28,7 @@ const HomeScreen = () => {
                                 key={index}
                             >
                                 <ProductList
+                                    item={item}
                                     id={item.id} 
                                     title={item.title}  
                                     image={item.image} 

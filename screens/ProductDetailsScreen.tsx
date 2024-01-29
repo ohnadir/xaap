@@ -1,41 +1,41 @@
 import React, { useState } from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    ScrollView,
-    Pressable,
-    TextInput,
-    ImageBackground,
-    ImageBackgroundProps,
-    Dimensions,
-} from "react-native";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Text, View, ScrollView, Pressable } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import BackgroundImage from '../src/components/ProductInfo/BackgroundImage';
 import Information from '../src/components/ProductInfo/Information';
+import { addToCart } from '../src/Redux/cartReducers';
+
+interface RouteParams {
+    title: string;
+    image: string;
+    price: number;
+    item: any;
+}
 
 const ProductDetailsScreen = () => {
-    const [addedToCart, setAddItemToCart] = useState()
-    const navigation = useNavigation();
+    const [addedToCart, setAddItemToCart] = useState<boolean>(false)
     const route = useRoute();
-    const product = {
-        "id": "65a92f7c6cbe6c63feb78016",
-        "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-        "quantity": 1,
-        "price": 695,
-        "image": "https://johnhardy.com/cdn/shop/files/BZS60193BSP_Back.jpg?v=1700586750&width=1000"
-    }
+    const dispatch = useDispatch();
+    const cart = useSelector((state:any) => state.cart.cart);
+    console.log(cart)
+    const addItemToCart = (item:any) => {
+        setAddItemToCart(true);
+        dispatch(addToCart(item));
+        setTimeout(() => {
+            setAddItemToCart(false);
+        }, 60000);
+    };
+    
     return (
         <ScrollView
             style={{ flex: 1, backgroundColor: "white" }} 
         >
             {/* <View> */}
-                <BackgroundImage images={product.image}/>
-                <Information title={product.name} price={product.price}/>
+                <BackgroundImage images={(route?.params as RouteParams)?.image}/>
+                <Information title={(route?.params as RouteParams)?.title} price={(route?.params as RouteParams)?.price}/>
                 <Pressable
-                    // onPress={() => setAddItemToCart(route?.params?.item)}
+                    onPress={() => addItemToCart((route?.params as RouteParams)?.item)}
                     style={{
                     backgroundColor: "#FFC72C",
                     padding: 10,
@@ -47,15 +47,13 @@ const ProductDetailsScreen = () => {
                     }}
                 >
                     {
-                        addedToCart ? (
-                            <View>
-                                <Text>Added to Cart</Text>
-                            </View>
-                        ) 
+                        addedToCart 
+                        ? 
+                        <View>
+                            <Text>Added to Cart</Text>
+                        </View>
                         : 
-                        (
                         <Text>Add to Cart</Text>
-                        )
                     }
                 </Pressable>
 

@@ -6,11 +6,14 @@ type RootStackParamList = {
     Info: { 
         id: number;
         title: string;
+        image: string;
         price: number;
+        item:any;
     }
   };
 
 interface ProductListProps {
+    item: any;
     id: number;
     image: string;
     title: string;
@@ -25,7 +28,8 @@ const ProductList: React.FC<ProductListProps> = ({
     title,
     price,
     rating,
-    addedToCart
+    addedToCart,
+    item
 }) => {
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -33,7 +37,9 @@ const ProductList: React.FC<ProductListProps> = ({
         navigation.navigate("Info", { 
             id: id,
             title: title,
-            price: price, 
+            price: price,
+            image: image,
+            item: item 
         });
     };
 
