@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Text,
     View,
@@ -7,6 +7,7 @@ import {
     ImageBackground,
     ImageBackgroundProps,
     Dimensions,
+    DeviceEventEmitter,
 } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -24,13 +25,33 @@ const BackgroundImage: React.FC<BackgroundImageProps> = ({
     onShare
 }) => {
     const [hasFavorited, setHasFavorited] = useState(true);
+    const [isLandscape, setIsLandscape] = useState(
+        Dimensions.get('window').width > Dimensions.get('window').height
+    );
+    
+    useEffect(() => {
+        const handleOrientationChange = ({ window }: { window: { width: number; height: number } }) => {
+          setIsLandscape(window.width > window.height);
+        };
+    
+        Dimensions.addEventListener('change', handleOrientationChange);
+    
+        return () => {
+          DeviceEventEmitter.removeAllListeners('change');
+        };
+    
+    }, []);
+
     const { width } = Dimensions.get("window");
-    const height = (width * 100) / 100;
+    const height = isLandscape ? 300 : (width * 100) / 100;
     const imageBackgroundStyle: CustomImageBackgroundProps['style'] = {
-        width,
+        width : height,
         height,
         resizeMode: 'contain',
+        paddingHorizontal: isLandscape ? 0 : 16
     };
+    
+
     return (
         <ScrollView >
             <ImageBackground
@@ -39,7 +60,8 @@ const BackgroundImage: React.FC<BackgroundImageProps> = ({
             >
                 <View
                     style={{
-                        padding: 20,
+                        padding: 15,
+                        
                         flexDirection: "row",
                         alignItems: "center",
                         justifyContent: "space-between",
@@ -80,9 +102,9 @@ const BackgroundImage: React.FC<BackgroundImageProps> = ({
                         }}
                     >
                         <MaterialCommunityIcons
-                        name="share-variant"
-                        size={24}
-                        color="black"
+                            name="share-variant"
+                            size={24}
+                            color="black"
                         />
                     </View>
                 </View>

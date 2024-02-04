@@ -8,10 +8,10 @@ import ProductList from '../src/components/Home/ProductList';
 const HomeScreen = () => {
     
     return (
-        <ScrollView style={{backgroundColor: "white" }}>
+        <ScrollView style={{backgroundColor: "white" }} showsHorizontalScrollIndicator={false}>
             <SearchBar/>
             <Category/>
-            <ScrollView>
+            <ScrollView showsHorizontalScrollIndicator={false}>
                 <View
                     style={{
                         flexDirection: "row",
@@ -25,7 +25,21 @@ const HomeScreen = () => {
                     {
                         List.map((item, index)=>(
                             <Pressable
+                            
                                 key={index}
+                                style={{ 
+                                    backgroundColor: 'white',
+                                    borderRadius: 8,
+                                    padding: 10,
+                                    shadowColor: '#000',
+                                    shadowOffset: {
+                                        width: 0,
+                                        height: 2,
+                                    },
+                                    shadowOpacity: 0.25,
+                                    shadowRadius: 3.84,
+                                    elevation: 5,
+                                }}
                             >
                                 <ProductList
                                     item={item}

@@ -1,9 +1,25 @@
-import { Image, Pressable, ScrollView, Text, View } from 'react-native'
-import React from 'react'
-import Categories from '../../category.json'
+import { Image, Pressable, ScrollView, Text, View, Dimensions, DeviceEventEmitter } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import Categories from '../../category.json';
 const Category = () => {
+    const [isLandscape, setIsLandscape] = useState(
+        Dimensions.get('window').width > Dimensions.get('window').height
+      );
+    
+      useEffect(() => {
+        const handleOrientationChange = ({ window }: { window: { width: number; height: number } }) => {
+          setIsLandscape(window.width > window.height);
+        };
+    
+        Dimensions.addEventListener('change', handleOrientationChange);
+    
+        return () => {
+          DeviceEventEmitter.removeAllListeners('change');
+        };
+    
+    }, []);
     return (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingVertical: 10}}>
             {
                 Categories.map((item, index) => (
                     <Pressable
@@ -15,14 +31,18 @@ const Category = () => {
                         }}
                     >
                         <Image
-                            style={{ width: 50, height: 50, resizeMode: "contain" }}
+                            style={{ 
+                                width: isLandscape ? 120 : 50, 
+                                height: isLandscape ? 60 : 50, 
+                                resizeMode: "contain" 
+                            }}
                             source={{ uri: item.image }}
                         />
 
                         <Text
                             style={{
                                 textAlign: "center",
-                                fontSize: 12,
+                                fontSize: isLandscape ? 16 : 12, 
                                 fontWeight: "500",
                                 marginTop: 5,
                             }}

@@ -51,7 +51,7 @@ const ProductList: React.FC<ProductListProps> = ({
                     source={{ uri: image }}
                 />
 
-                <Text numberOfLines={1} style={{ width: 150, marginTop: 10 }}>
+                <Text numberOfLines={1} style={{ width: 150, marginTop: 10, color: "black" }}>
                     {title}
                 </Text>
 
@@ -63,7 +63,7 @@ const ProductList: React.FC<ProductListProps> = ({
                         justifyContent: "space-between",
                     }}
                 >
-                    <Text style={{ fontSize: 15, fontWeight: "bold" }}>₹{price}</Text>
+                    <Text style={{ fontSize: 15, fontWeight: "bold", color: "black" }}>₹{price}</Text>
                     <Text style={{ color: "#FFC72C", fontWeight: "bold" }}>
                         {rating} ratings
                     </Text>
@@ -79,14 +79,15 @@ const ProductList: React.FC<ProductListProps> = ({
                     alignItems: "center",
                     marginHorizontal: 10,
                     marginTop: 10,
+                    
                 }}
             >
                 {addedToCart ? (
                     <View>
-                        <Text>Added to Cart</Text>
+                        <Text style={{color: "black", fontWeight: '600',}} >Added to Cart</Text>
                     </View>
                 ) : (
-                    <Text>Add to Cart</Text>
+                    <Text style={{color: "black", fontWeight: '600',}}>Add to Cart</Text>
                 )}
             </Pressable>
         

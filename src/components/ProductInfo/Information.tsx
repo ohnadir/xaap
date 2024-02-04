@@ -12,7 +12,7 @@ const Information: React.FC<InformationProps> = ({
     price
 }) => {
     return (
-        <View>
+        <View style={{ paddingHorizontal: 10}}>
             <View style={{ padding: 10 }}>
                 <Text style={{ fontSize: 15, fontWeight: "500", color: "black" }}>{title}</Text>
                 <Text style={{ fontSize: 18, fontWeight: "600", color: "black", marginTop: 6 }}>${price}</Text>

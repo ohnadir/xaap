@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Text, View, ScrollView, Pressable } from "react-native";
+import React, { useEffect, useState } from 'react'
+import { Text, View, ScrollView, Pressable, DeviceEventEmitter, Dimensions } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import BackgroundImage from '../src/components/ProductInfo/BackgroundImage';
 import Information from '../src/components/ProductInfo/Information';
 import { addToCart } from '../src/Redux/cartReducers';
@@ -18,7 +18,6 @@ const ProductDetailsScreen = () => {
     const route = useRoute();
     const dispatch = useDispatch();
     const cart = useSelector((state:any) => state.cart.cart);
-    console.log(cart)
     const addItemToCart = (item:any) => {
         setAddItemToCart(true);
         dispatch(addToCart(item));
@@ -26,14 +25,37 @@ const ProductDetailsScreen = () => {
             setAddItemToCart(false);
         }, 60000);
     };
+
+    const [isLandscape, setIsLandscape] = useState(
+        Dimensions.get('window').width > Dimensions.get('window').height
+      );
     
+    useEffect(() => {
+        const handleOrientationChange = ({ window }: { window: { width: number; height: number } }) => {
+          setIsLandscape(window.width > window.height);
+        };
+    
+        Dimensions.addEventListener('change', handleOrientationChange);
+    
+        return () => {
+          DeviceEventEmitter.removeAllListeners('change');
+        };
+    
+    }, []);
+
     return (
         <ScrollView
             style={{ flex: 1, backgroundColor: "white" }} 
         >
             {/* <View> */}
-                <BackgroundImage images={(route?.params as RouteParams)?.image}/>
-                <Information title={(route?.params as RouteParams)?.title} price={(route?.params as RouteParams)?.price}/>
+                <View style={{
+                    flexDirection: isLandscape ? "row" : "column",
+                    marginTop: 10,
+                    marginBottom: 30
+                }}>
+                    <BackgroundImage images={(route?.params as RouteParams)?.image}/>
+                    <Information title={(route?.params as RouteParams)?.title} price={(route?.params as RouteParams)?.price}/>
+                </View>
                 <Pressable
                     onPress={() => addItemToCart((route?.params as RouteParams)?.item)}
                     style={{
@@ -50,10 +72,10 @@ const ProductDetailsScreen = () => {
                         addedToCart 
                         ? 
                         <View>
-                            <Text>Added to Cart</Text>
+                            <Text style={{color: "black", fontWeight : "500"}}>Added to Cart</Text>
                         </View>
                         : 
-                        <Text>Add to Cart</Text>
+                        <Text style={{color: "black", fontWeight : "500"}}>Add to Cart</Text>
                     }
                 </Pressable>
 
@@ -68,7 +90,7 @@ const ProductDetailsScreen = () => {
                     marginVertical: 10,
                     }}
                 >
-                    <Text>Buy Now</Text>
+                    <Text style={{color: "black", fontWeight : "500"}}>Buy Now</Text>
                 </Pressable>
             {/* </View> */} 
         </ScrollView>
